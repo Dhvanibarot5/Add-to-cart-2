@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Management Form</title>
+    <title>Employee Data Form</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <style>
       body {
-        background-color: #f8fafc;
+        margin-top: 20px;
+        background-color: #386691;
       }
       .form-container {
-        background-color: #ffffff;
+        background-color: #9bade9;
         border-radius: 0.5rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
@@ -20,81 +21,70 @@
     </style>
   </head>
   <body>
-    <form class="max-w-md mx-auto p-6 form-container">
-      <h2 class="text-2xl font-bold mb-4">Book Management Form</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium mb-2" for="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
-            placeholder="Book Title"
-            required
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-2" for="author">Author</label>
-          <input
-            type="text"
-            id="author"
-            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
-            placeholder="Book Author"
-            required
-          />
-        </div>
+    <form class="max-w-md mx-auto p-6 form-container" id="employeeForm">
+      <h2 class="text-2xl font-bold mb-5 text-center">Employee Data Form</h2>
+      <div>
+        <label class="block text-m font-medium my-2" for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
+          placeholder="Employee Name"
+          required
+        />
       </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium mb-2" for="publisher">Publisher</label>
-          <input
-            type="text"
-            id="publisher"
-            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
-            placeholder="Book Publisher"
-            required
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-2" for="published_date">Published Date</label>
-          <input type="date" id="published_date" class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded" required />
-        </div>
+      <div>
+        <label class="block text-m font-medium my-2" for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
+          placeholder="Employee Email"
+          required
+        />
       </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium mb-2" for="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
-            placeholder="Book Price"
-            step="0.01"
-            required
-          />
-        </div>
+      <div>
+        <label class="block text-m font-medium my-2" for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
+          placeholder="(123) 456-7890"
+          required
+        />
       </div>
-      <p id="error" class="text-red-600"></p>
+      <div>
+        <label class="block text-m font-medium my-2" for="position">Position</label>
+        <input
+          type="text"
+          id="position"
+          class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded"
+          placeholder="Employee Position"
+          required
+        />
+      </div>
+
+      <div id="error" class="text-red-700"></div>
+
       <div class="pt-4">
         <button class="bg-gray-600 hover:bg-black text-white font-bold py-2 px-4 rounded" id="btn" type="submit">Submit</button>
       </div>
     </form>
 
     <div class="max-w-md mx-auto mt-6">
-      <h2 class="text-xl font-bold mb-4">Book List</h2>
+      <h2 class="text-xl font-bold mb-4 text-white">Employee List</h2>
       <table class="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
-            <th class="py-2 px-4 border-b">Title</th>
-            <th class="py-2 px-4 border-b">Author</th>
-            <th class="py-2 px-4 border-b">Publisher</th>
-            <th class="py-2 px-4 border-b">Published Date</th>
-            <th class="py-2 px-4 border-b">Price</th>
+            <th class="py-2 px-4 border-b">Name</th>
+            <th class="py-2 px-4 border-b">Email</th>
+            <th class="py-2 px-4 border-b">Phone Number</th>
+            <th class="py-2 px-4 border-b">Position</th>
             <th class="py-2 px-4 border-b">Edit</th>
             <th class="py-2 px-4 border-b">Delete</th>
-            
           </tr>
         </thead>
-        <tbody id="bookTableBody"></tbody>
+        <tbody id="employeeTableBody"></tbody>
       </table>
     </div>
 

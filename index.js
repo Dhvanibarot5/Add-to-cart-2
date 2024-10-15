@@ -1,37 +1,31 @@
-const books = JSON.parse(localStorage.getItem("books")) || [];
+const employees = JSON.parse(localStorage.getItem("employees")) || [];
 const error = document.getElementById("error");
-const bookTableBody = document.getElementById("bookTableBody");
+const employeeTableBody = document.getElementById("employeeTableBody");
 
-const handleEdit = (index) => {
-  console.log(index);
-};
 const handleDelete = (index) => {
-  books.splice(index, 1);
-  localStorage.setItem("books", JSON.stringify(books));
+  employees.splice(index, 1);
+  localStorage.setItem("employees", JSON.stringify(employees));
   PrintTable();
 };
 
-// console.log(books);
-
 const PrintTable = () => {
-  bookTableBody.innerHTML = "";
+  employeeTableBody.innerHTML = "";
 
-  books.map((book, index) => {
-    const newRow = document.createElement("tr"); //<tr></tr>
-
+  employees.map((employee, index) => {
+    const newRow = document.createElement("tr");
     newRow.innerHTML = `
-              <td class="py-2 px-4 border-b">${book.title}</td>
-              <td class="py-2 px-4 border-b">${book.author}</td>
-              <td class="py-2 px-4 border-b">${book.publisher}</td>
-              <td class="py-2 px-4 border-b">${book.publishedDate}</td>
-              <td class="py-2 px-4 border-b">${book.price}</td>
-              <td class="py-2 px-4 border-b">
+                <td class="py-2 px-4 border-b">${employee.name}</td>
+                <td class="py-2 px-4 border-b">${employee.email}</td>
+                <td class="py-2 px-4 border-b">${employee.phone}</td>
+                <td class="py-2 px-4 border-b">${employee.position}</td>
+                <td class="py-2 px-4 border-b">
                 <button onClick="handleEdit(${index})">edit</button>
-              </td>
-              <td class="py-2 px-4 border-b">
+                </td>
+                <td class="py-2 px-4 border-b">
                 <button onClick="handleDelete(${index})">delete</button>
-              </td>`;
-    bookTableBody.appendChild(newRow);
+                </td>
+                    `;
+    employeeTableBody.appendChild(newRow);
   });
 };
 
@@ -39,36 +33,33 @@ PrintTable();
 
 document.getElementById("btn").addEventListener("click", (e) => {
   e.preventDefault();
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const publisher = document.getElementById("publisher").value;
-  const publishedDate = document.getElementById("published_date").value;
-  const price = document.getElementById("price").value;
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const position = document.getElementById("position").value;
 
-  if (!title || !author || !publisher || !publishedDate || !price) {
+  if (!name || !email || !phone || !position) {
     error.innerHTML = "All fields are required.";
   } else {
     error.innerHTML = "";
 
     const newData = {
-      title,
-      author,
-      publisher,
-      publishedDate,
-      price,
+      name,
+      email,
+      phone,
+      position,
     };
 
-    books.push(newData);
+    employees.push(newData);
 
-    localStorage.setItem("books", JSON.stringify(books));
-    console.log(books);
+    localStorage.setItem("employees", JSON.stringify(employees));
+    console.log(employees);
 
     PrintTable();
 
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("publisher").value = "";
-    document.getElementById("published_date").value = "";
-    document.getElementById("price").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("position").value = "";
   }
 });
