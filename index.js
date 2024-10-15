@@ -1,11 +1,31 @@
 const employees = JSON.parse(localStorage.getItem("employees")) || [];
 const error = document.getElementById("error");
 const employeeTableBody = document.getElementById("employeeTableBody");
+let selectedUser;
+let isEdit = false;
+let isEditIndex = null;
 
 const handleDelete = (index) => {
   employees.splice(index, 1);
   localStorage.setItem("employees", JSON.stringify(employees));
   PrintTable();
+};
+const handleEdit = (index) => {
+  selectedUser = employees[index];
+
+  console.log(selectedUser);
+
+  document.getElementById("name").value = selectedUser.name;
+  document.getElementById("email").value = selectedUser.email;
+  document.getElementById("phone").value = selectedUser.phone;
+  document.getElementById("position").value = selectedUser.position;
+  document.getElementById("btn").innerHTML = "Update";
+
+  isEdit = true;
+  isEditIndex = index;
+
+  // localStorage.setItem("employees", JSON.stringify(employees));
+  // PrintTable();
 };
 
 const PrintTable = () => {
@@ -43,14 +63,25 @@ document.getElementById("btn").addEventListener("click", (e) => {
   } else {
     error.innerHTML = "";
 
-    const newData = {
-      name,
-      email,
-      phone,
-      position,
-    };
+    if (isEdit) {
+      console.log("edit", isEditIndex);
+      employees[isEditIndex] = {
+        name,
+        email,
+        phone,
+        position,
+      };
+      isEditIndex = null;
+    } else {
+      const newData = {
+        name,
+        email,
+        phone,
+        position,
+      };
 
-    employees.push(newData);
+      employees.push(newData);
+    }
 
     localStorage.setItem("employees", JSON.stringify(employees));
     console.log(employees);
